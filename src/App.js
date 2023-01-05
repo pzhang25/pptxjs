@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+
+import pptxgen from "pptxgenjs";
 
 function App() {
+  const genPPTx = () => {
+    let pptx = new pptxgen();
+
+    let slide = pptx.addSlide();
+
+    slide.addImage({ path: "http://localhost:3000/images/Landscape_6.jpg", w: 6, h: 4, x: 0.5, y: 0.5 });
+
+    pptx.writeFile({ fileName: "react-demo.pptx" });
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={genPPTx}>Create a pptx</button>
     </div>
   );
 }
